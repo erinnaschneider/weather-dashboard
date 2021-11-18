@@ -12,14 +12,20 @@ let searchedCities = [];
     // stop form from submitting
     event.preventDefault();
     // creating a saved cities object to push into an array for storage
-    let savedCities = {
-        city: searchedValue.value
-    };
-    // push user input values into searchedCities array
-    searchedCities.push(savedCities);
+    let inputText = searchedValue.value.trim();
+    
+    searchedCities.push(inputText);
 
     // save this array full of user input-saved objects to local storage
-    localStorage.setItem("SearchedCitiesFromUser", JSON.stringify(searchedCities));
+    localStorage.setItem("SearchedCitiesFromUser", searchedCities);
+    
+    // add to <p> tag 
+    let pValue = "";
+
+    for (i = 0; i < searchedCities.length; i++) {
+        pValue = pValue + searchedCities[i];
+    }
+    searchedInputsList.innerHTML = pValue;
 };
 
 // add event listeners 
