@@ -4,11 +4,24 @@ let searchInputs = document.getElementById("searchInput");
 let searchedInputsList = document.getElementById("searchedList");
 let searchedValue = document.getElementById("searched");
 let searchButton = document.getElementById("button");
-// save user inputs to local storage
+let searchedCities = [];
 
-searchButton.addEventListener("click", function (event) {
+
+// save user inputs to local storage when search button is clicked
+  function saveUserInputs(event) {
+    // stop form from submitting
     event.preventDefault();
-    localStorage.setItem("city", searchedValue.value);
-});
+    // creating a saved cities object to push into an array for storage
+    let savedCities = {
+        city: searchedValue.value
+    };
+    // push user input values into searchedCities array
+    searchedCities.push(savedCities);
 
+    // save this array full of user input-saved objects to local storage
+    localStorage.setItem("SearchedCitiesFromUser", JSON.stringify(searchedCities));
+};
+
+// add event listeners 
+searchButton.addEventListener("click", saveUserInputs);
 
