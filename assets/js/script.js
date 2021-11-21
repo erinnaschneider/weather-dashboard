@@ -1,7 +1,6 @@
 // variables
 let apiKey = "0b71a56e08e923ace97d75b3cf84952f";
 let searchInputs = document.getElementById("searchInput");
-let searchedInputsList = document.getElementById("searchedList");
 let searchedValue = document.getElementById("searched");
 let searchButton = document.getElementById("button");
 let searchedCities = [];
@@ -12,20 +11,26 @@ let searchedCities = [];
     // stop form from submitting
     event.preventDefault();
     // creating a saved cities object to push into an array for storage
-    let inputText = searchedValue.value.trim();
-    
-    searchedCities.push(inputText);
+    let inputText = {
+        city: searchedValue.value.trim()
+    };
+
+    searchedCities.push(inputText.city);
 
     // save this array full of user input-saved objects to local storage
     localStorage.setItem("SearchedCitiesFromUser", searchedCities);
     
-    // add to <p> tag 
+    // add to list div 
     let pValue = "";
 
     for (i = 0; i < searchedCities.length; i++) {
         pValue = pValue + searchedCities[i];
     }
-    searchedInputsList.innerHTML = pValue;
+    // creating child elements to put pValue inside of
+    let cityList = document.createElement("div");
+    cityList.innerHTML = "<p>" + inputText.city + "</p>"
+       
+    searchedInputsList.append(cityList);
 };
 
 // add event listeners 
