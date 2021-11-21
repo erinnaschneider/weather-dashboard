@@ -4,6 +4,7 @@ let searchInputs = document.getElementById("searchInput");
 let searchedValue = document.getElementById("searched");
 let searchButton = document.getElementById("button");
 let searchedCities = [];
+let forecastDiv = document.getElementById("5dayforecast");
 
 
 // save user inputs to local storage when search button is clicked
