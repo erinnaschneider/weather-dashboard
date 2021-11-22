@@ -32,10 +32,10 @@ dayjs.extend(window.dayjs_plugin_timezone);
         pValue = pValue + searchedCities[i];
     }
     // creating child elements to put pValue inside of
-    let cityList = document.createElement("div");
-    cityList.innerHTML = "<p>" + inputText.city + "</p>"
+    let cityList = document.createElement("li");
+    cityList.innerHTML =  inputText.city;
        
-    //searchedInputsList.append(cityList);
+    searchHistory.append(cityList);
     getCoords(userinput)
 };
 
