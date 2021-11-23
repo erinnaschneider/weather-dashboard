@@ -37,6 +37,9 @@ dayjs.extend(window.dayjs_plugin_timezone);
        
     searchHistory.append(cityList);
     getCoords(userinput)
+
+    // clear searched input 
+    searchedValue.value = "";
 };
 
 function getCoords(cityname){
@@ -46,7 +49,7 @@ function getCoords(cityname){
     }).then(function(res){
         getWeatherData(res)
     })
-}
+};
 
 function getWeatherData(coordinates){
     //console.log(coordinates)
@@ -59,7 +62,7 @@ return data.json()
     }).then(function(res){
     renderCurrentWeather(city, res.current, res.timezone)
     })
-}
+};
 
 function renderCurrentWeather(city, weather, timezone){
     var date = dayjs().tz(timezone).format('M/D/YYYY');
@@ -70,7 +73,7 @@ function renderCurrentWeather(city, weather, timezone){
     let icon = weather.weather[0].icon;
     //city date/temp/humid/windspeed/uv
 
-}
+};
 
 
 // add event listeners 
