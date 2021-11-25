@@ -7,6 +7,7 @@ let searchedCities = [];
 let forecastDiv = document.getElementById("5dayforecast");
 let allWeather = document.getElementById("weatherInfo");
 
+
 dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
 
@@ -53,9 +54,9 @@ function getCoords(cityname){
 
 function getWeatherData(coordinates){
     //console.log(coordinates)
-    var lat = coordinates.coord.lat;
-    var lon =  coordinates.coord.lon;
-    var city = coordinates.name;
+    let lat = coordinates.coord.lat;
+    let lon =  coordinates.coord.lon;
+    let city = coordinates.name;
 
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=imperial&appid=${apiKey}`).then(function(data){
 return data.json()
@@ -65,15 +66,45 @@ return data.json()
 };
 
 function renderCurrentWeather(city, weather, timezone){
-    var date = dayjs().tz(timezone).format('M/D/YYYY');
+    let date = dayjs().tz(timezone).format('M/D/YYYY');
     let temperature = weather.temp;
     let humidity = weather.humidity;
     let uvIndex = weather.uvi;
     let windSpeed = weather.wind_speed;
     let icon = weather.weather[0].icon;
+    
     //city date/temp/humid/windspeed/uv
+    console.log(weather);
+
+    // append current weather to weatherInfo (allWeather) div
+    
+    //add city name and date
+    let currentSearch = document.createElement("h1");
+    currentSearch.innerHTML = city + " " + date + " " + `<img src='http://openweathermap.org/img/wn/${icon}@2x.png'>`;
+    allWeather.appendChild(currentSearch);
+    // add temp
+  let temp = document.createElement("p");
+  temp.innerHTML = "Temperature: " + + Math.round(temperature) + "\u00B0 F"
+  allWeather.appendChild(temp);
+
+  // append humidity
+  let humid = document.createElement("p");
+  humid.innerHTML = "Humidity: " + humidity + "%";
+  allWeather.appendChild(humid);
+  //append uvindex
+  let uv = document.createElement("p");
+  uv.innerHTML = "UV Index: " + "<span>" + uvIndex + "</span>";
+  allWeather.appendChild(uv);
+
+  //append windspeed
+  let wind = document.createElement("p");
+  wind.innerHTML = "Wind speed: " + windSpeed + " mph";
+  allWeather.appendChild(wind);
 
 };
+
+
+
 
 
 // add event listeners 
