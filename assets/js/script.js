@@ -2,7 +2,8 @@
 let apiKey = "0b71a56e08e923ace97d75b3cf84952f";
 let searchHistory = document.getElementById("searchInput");
 let searchedValue = document.getElementById("searched");
-let searchButton = document.getElementById("button");
+let searchButton = document.getElementById("searchbutton");
+let clearButton = document.getElementById("clearbutton");
 let searchedCities = [];
 let forecastDiv = document.getElementById("5dayforecast");
 let allWeather = document.getElementById("weatherInfo");
@@ -33,10 +34,13 @@ dayjs.extend(window.dayjs_plugin_timezone);
         pValue = pValue + searchedCities[i];
     }
     // creating child elements to put pValue inside of
-    let cityList = document.createElement("li");
+    let cityListLi = document.createElement("li");
+    let cityList = document.createElement("button");
     cityList.innerHTML =  inputText.city;
-       
-    searchHistory.append(cityList);
+    cityList.classList = "button is-white is-normal";
+    
+    cityListLi.append(cityList);
+    searchHistory.append(cityListLi);
     getCoords(userinput)
 
     // clear searched input 
@@ -66,6 +70,8 @@ return data.json()
 };
 
 function renderCurrentWeather(city, weather, timezone){
+    clearCurrentWeather(allWeather);
+
     let date = dayjs().tz(timezone).format('M/D/YYYY');
     let temperature = weather.temp;
     let humidity = weather.humidity;
@@ -74,7 +80,7 @@ function renderCurrentWeather(city, weather, timezone){
     let icon = weather.weather[0].icon;
     
     //city date/temp/humid/windspeed/uv
-    console.log(weather);
+    //console.log(weather);
 
     // append current weather to weatherInfo (allWeather) div
     
@@ -103,8 +109,52 @@ function renderCurrentWeather(city, weather, timezone){
 
 };
 
+let clearCurrentWeather = function(data) {
+    while (data.firstChild) {
+        data.removeChild(data.firstChild);
+    }
+};
 
 
+let fiveDayWeather = function(city, weather, timezone) {
+ 
+
+    let date = dayjs().tz(timezone).format('M/D/YYYY');
+    let temperature = weather.temp;
+    let humidity = weather.humidity;
+    let uvIndex = weather.uvi;
+    let windSpeed = weather.wind_speed;
+    let icon = weather.weather[0].icon;
+
+    for (let i = 0; i < something.length; i++) {
+
+    const cardHtml = `<div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+        <img src='http://openweathermap.org/img/wn/${icon}@2x.png'>
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="title is-4">${date}</p>
+        <p class="subtitle is-6">${temperature}</p>
+        <p class="subtitle is-6">${humidity}</p>
+        <p class="subtitle is-6">${uvIndex}</p>
+        <p class="subtitle is-6">${windSpeed}</p>
+      </div>
+    </div>
+
+    <div class="content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+      <a href="#">#css</a> <a href="#">#responsive</a>
+      <br>
+      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+    </div>
+  </div>
+</div>`
+}
+}
 
 
 // add event listeners 
