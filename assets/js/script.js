@@ -25,7 +25,7 @@ dayjs.extend(window.dayjs_plugin_timezone);
     searchedCities.push(inputText.city);
 
     // save this array full of user input-saved objects to local storage
-    localStorage.setItem("SearchedCitiesFromUser", searchedCities);
+    localStorage.setItem('SearchedCitiesFromUser', searchedCities);
     
     // add to list div 
     let pValue = "";
@@ -159,8 +159,8 @@ let fiveDayWeather = function(city, weather, timezone) {
 function clearSearches() {
     allWeather.innerHTML = "";
     searchHistory.innerHTML = "";
-    localStorage.removeItem('searchedCities');
-
+    localStorage.removeItem('SearchedCitiesFromUser');
+    saveUserInputs();
 };
 
 
