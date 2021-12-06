@@ -99,8 +99,17 @@ function renderCurrentWeather(city, weather, timezone){
   allWeather.appendChild(humid);
   //append uvindex
   let uv = document.createElement("p");
-  uv.innerHTML = "UV Index: " + "<span>" + uvIndex + "</span>";
+
+  if (uvIndex < 3) {
+    uv.innerHTML = "UV Index: " + "<span class='green'>" + uvIndex + "</span>";
+  } else {
+    uv.innerHTML = "UV Index: " + "<span class='red'>" + uvIndex + "</span>";
+  };
+
   allWeather.appendChild(uv);
+
+ 
+currentWeatherContainer.appendChild(UVindex);
 
   //append windspeed
   let wind = document.createElement("p");

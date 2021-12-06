@@ -7,3 +7,13 @@ button {
     margin: 3px;
     display: block;
 }
+
+.green {
+    background-color:rgb(105, 194, 105);
+    border-radius:25%;
+}
+
+.red {
+    background-color: rgb(221, 94, 94);
+    border-radius: 25%;
+}
