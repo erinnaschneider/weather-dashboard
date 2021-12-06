@@ -156,7 +156,16 @@ let fiveDayWeather = function(city, weather, timezone) {
 }
 }
 
+function clearSearches() {
+    allWeather.innerHTML = "";
+    searchHistory.innerHTML = "";
+    localStorage.removeItem('searchedCities');
+
+};
+
+
+
 
 // add event listeners 
 searchButton.addEventListener("click", saveUserInputs);
-
+clearButton.addEventListener("click", clearSearches);
