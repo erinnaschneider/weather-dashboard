@@ -57,16 +57,20 @@ function getCoords(cityname){
 };
 
 function getWeatherData(coordinates){
-    //console.log(coordinates)
+    
     let lat = coordinates.coord.lat;
     let lon =  coordinates.coord.lon;
     let city = coordinates.name;
 
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=imperial&appid=${apiKey}`).then(function(data){
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely,alerts&units=imperial&appid=${apiKey}`).then(
+      function(data){
 return data.json()
     }).then(function(res){
+      console.log('first resp', res)
     renderCurrentWeather(city, res.current, res.timezone)
-    })
+    // }).then(function(res){
+    //   console.log('second resp', res)
+      fiveDayWeather(res.daily, res.timezone)})
 };
 
 function renderCurrentWeather(city, weather, timezone){
@@ -108,9 +112,6 @@ function renderCurrentWeather(city, weather, timezone){
 
   allWeather.appendChild(uv);
 
- 
-currentWeatherContainer.appendChild(UVindex);
-
   //append windspeed
   let wind = document.createElement("p");
   wind.innerHTML = "Wind speed: " + windSpeed + " mph";
@@ -125,31 +126,21 @@ let clearCurrentWeather = function(data) {
 };
 
 
-let fiveDayWeather = function(city, weather, timezone) {
- 
+let fiveDayWeather = function(data) {
+  console.log('data!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', data[1].weather[0].icon)
 
-    let date = dayjs().tz(timezone).format('M/D/YYYY');
-    let temperature = weather.temp;
-    let humidity = weather.humidity;
-    let uvIndex = weather.uvi;
-    let windSpeed = weather.wind_speed;
-    let icon = weather.weather[0].icon;
+    for (let i = 1; i < data.length - 2; i++) {
 
-    for (let i = 0; i < something.length; i++) {
-
-    const cardHtml = `<div class="card-content">
+      forecastDiv.innerHTML = `<div class="card-content">
     <div class="media">
       <div class="media-left">
         <figure class="image is-48x48">
-        <img src='http://openweathermap.org/img/wn/${icon}@2x.png'>
+        <img src='http://openweathermap.org/img/wn/${data[i].weather[0].icon}@2x.png'>
         </figure>
       </div>
       <div class="media-content">
-        <p class="title is-4">${date}</p>
-        <p class="subtitle is-6">${temperature}</p>
-        <p class="subtitle is-6">${humidity}</p>
-        <p class="subtitle is-6">${uvIndex}</p>
-        <p class="subtitle is-6">${windSpeed}</p>
+        <p class="title is-4">${moment(data.daily[i].dt, "X").format("M/D/YYYY")}</p>
+        <p class="subtitle is-6">${data[i].temp.day}</p>
       </div>
     </div>
 
