@@ -67,7 +67,7 @@ function getWeatherData(coordinates){
       function(data){
 return data.json()
     }).then(function(res){
-      console.log('first resp', res)
+     // console.log('first resp', res)
     renderCurrentWeather(city, res.current, res.timezone)
     // }).then(function(res){
     //   console.log('second resp', res)
@@ -75,9 +75,37 @@ return data.json()
     })
 };
 
+let fiveDayWeather = function(data) {
+  //console.log('data!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', data[1].weather[0].icon)
+    for (var i = 1; i < data.length - 2; i++) {
+      
+      console.log(data[i]);
+      forecastDiv.innerHTML += `<div class="card">
+      <div class="card-content">
+        <div class="content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+        <img src='http://openweathermap.org/img/wn/${data[i].weather[0].icon}@2x.png'>
+        </figure>
+        </div>
+        <div class="media-right">
+        <p class="title is-4">${moment(data[i].dt, "X").format('M/D/YYYY')}</p>
+        </div>
+        </div>
+        <p class="subtitle is-6">Temperature: ${Math.round(data[i].temp.day)} \u00B0 F</p>
+        <p class="subtitle is-6">Humidity: ${data[i].humidity}%</p>
+        <p class="subtitle is-6">Windspeed: ${data[i].wind_speed} mph</p>
+      </div>
+    </div>
+    </div>`
+}
+}
+
 function renderCurrentWeather(city, weather, timezone){
     clearCurrentWeather(allWeather);
-
+    clearCurrentWeather(forecastDiv);
+    
     let date = dayjs().tz(timezone).format('M/D/YYYY');
     let temperature = weather.temp;
     let humidity = weather.humidity;
@@ -118,9 +146,7 @@ function renderCurrentWeather(city, weather, timezone){
   let wind = document.createElement("p");
   wind.innerHTML = "Wind speed: " + windSpeed + " mph";
   allWeather.appendChild(wind);
-
-  
-
+ 
 };
 
 let clearCurrentWeather = function(data) {
@@ -128,34 +154,6 @@ let clearCurrentWeather = function(data) {
         data.removeChild(data.firstChild);
     }
 };
-
-
-let fiveDayWeather = function(data, timezone) {
-  //console.log('data!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', data[1].weather[0].icon)
-    for (var i = 1; i < data.length - 2; i++) {
-      
-      console.log(data[i]);
-      forecastDiv.innerHTML += `<div class="card">
-      <div class="card-content">
-        <div class="content">
-    <div class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-        <img src='http://openweathermap.org/img/wn/${data[i].weather[0].icon}@2x.png'>
-        </figure>
-        </div>
-        <div class="media-right">
-        <p class="title is-4">${moment(data[i].dt, "X").format('M/D/YYYY')}</p>
-        </div>
-        </div>
-        <p class="subtitle is-6">Temperature: ${Math.round(data[i].temp.day)} \u00B0 F</p>
-        <p class="subtitle is-6">Humidity: ${data[i].humidity}%</p>
-        <p class="subtitle is-6">Windspeed: ${data[i].wind_speed} mph</p>
-      </div>
-    </div>
-    </div>`
-}
-}
 
 
 function clearSearches() {
