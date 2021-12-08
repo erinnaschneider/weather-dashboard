@@ -8,7 +8,6 @@ let searchedCities = [];
 let forecastDiv = document.getElementById("5dayforecast");
 let allWeather = document.getElementById("weatherInfo");
 
-
 dayjs.extend(window.dayjs_plugin_utc);
 dayjs.extend(window.dayjs_plugin_timezone);
 
@@ -33,19 +32,28 @@ dayjs.extend(window.dayjs_plugin_timezone);
     for (i = 0; i < searchedCities.length; i++) {
         pValue = pValue + searchedCities[i];
     }
+
+
     // creating child elements to put pValue inside of
     let cityListLi = document.createElement("li");
     let cityList = document.createElement("button");
     cityList.innerHTML =  inputText.city;
     cityList.classList = "button is-white is-normal";
     
+
     cityListLi.append(cityList);
     searchHistory.append(cityListLi);
+
+
     getCoords(userinput)
 
+
+    
     // clear searched input 
     searchedValue.value = "";
-
+    cityList.addEventListener("click", function() {
+      getCoords(userinput);
+    });
 };
 
 function getCoords(cityname){
