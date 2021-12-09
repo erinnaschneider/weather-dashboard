@@ -92,9 +92,6 @@ let fiveDayWeather = function(data) {
       <div class="card-content">
         <div class="content">
     <div class="media">
-      <div class="media-left">
-      
-        </div>
         <div class="is-centered">
         <p class="title is-4"><figure class="image is-48x48">
         <img src='http://openweathermap.org/img/wn/${data[i].weather[0].icon}@2x.png'>

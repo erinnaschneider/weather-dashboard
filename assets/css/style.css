@@ -19,5 +19,9 @@ button {
 }
 
 .card {
-  max-width: 27%;  
+  max-width: 28%;  
+}
+
+.columns:last-child {
+    margin-bottom: 0 !important;
 }
