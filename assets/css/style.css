@@ -17,3 +17,7 @@ button {
     background-color: rgb(221, 94, 94);
     border-radius: 25%;
 }
+
+.card {
+  max-width: 27%;  
+}
