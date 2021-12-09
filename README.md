@@ -12,7 +12,7 @@
     * There is a 5-day forecast that displays:
         * A weather icon appropriate for the forecasted weather pattern
         * The date
-        * The day's temperature high, in Fahrenheit
+        * The day's projected temperature high, in Fahrenheit
         * The day's projected humidity percentage
         * The days' projected windspeed average, in mph
 
