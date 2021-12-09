@@ -92,15 +92,15 @@ let fiveDayWeather = function(data) {
       <div class="card-content">
         <div class="content">
     <div class="media">
-        <div class="is-centered">
-        <p class="title is-4"><figure class="image is-48x48">
+        <div class="is-centered"><figure class="image is-48x48">
         <img src='http://openweathermap.org/img/wn/${data[i].weather[0].icon}@2x.png'>
-        </figure>${moment(data[i].dt, "X").format('M/D/YYYY')}</p>
+        </figure>
+        <p class="title is-4">${moment(data[i].dt, "X").format('M/D/YY')}</p>
         </div>
         </div>
-        <p class="subtitle is-6">Temp: ${Math.round(data[i].temp.day)} \u00B0 F</p>
-        <p class="subtitle is-6">Humidity: ${data[i].humidity}%</p>
-        <p class="subtitle is-6">Windspeed: ${data[i].wind_speed} mph</p>
+        <p class="subtitle is-6">T: ${Math.round(data[i].temp.day)} \u00B0 F</p>
+        <p class="subtitle is-6">H: ${data[i].humidity}%</p>
+        <p class="subtitle is-6">Ws: ${data[i].wind_speed} mph</p>
       </div>
     </div>
     </div>`
@@ -111,7 +111,7 @@ function renderCurrentWeather(city, weather, timezone){
     clearCurrentWeather(allWeather);
     clearCurrentWeather(forecastDiv);
     
-    let date = dayjs().tz(timezone).format('M/D/YYYY');
+    let date = dayjs().tz(timezone).format('M/D/YY');
     let temperature = weather.temp;
     let humidity = weather.humidity;
     let uvIndex = weather.uvi;

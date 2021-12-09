@@ -19,9 +19,19 @@ button {
 }
 
 .card {
-  max-width: 28%;  
+  max-width: 50%;  
 }
 
-.columns:last-child {
-    margin-bottom: 0 !important;
+.card-content p {
+    text-align: left;
 }
+
+.title p {
+    font-weight: bold;
+}
+
+h1 {
+    font-weight: bold;
+    font-size:x-large;
+}
+
