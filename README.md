@@ -1,7 +1,7 @@
 # Weather Dashboard 
 
 ## This application:
-* Shows the current weather and 5 day forecast of any city a user searches.
+* Shows the current weather and 5-day forecast of any city a user searches.
     * There is current weather that displays:
         * The date
         * An appropriate icon for the weather at the time of the search query
@@ -9,7 +9,7 @@
         * The wind speed, in mph
         * The humidity percentage 
         * The UV Index, displaying in green beneath a value of 3 and red otherwise
-    * There is a 5 day forecast that displays:
+    * There is a 5-day forecast that displays:
         * A weather icon appropriate for the forecasted weather pattern
         * The date
         * The day's temperature high, in Fahrenheit
