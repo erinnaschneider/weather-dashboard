@@ -1,7 +1,7 @@
 # Weather Dashboard 
 
 ## This application:
-* Shows the weather any city a user searches:
+* Shows the current weather and 5 day forecast of any city a user searches.
     * There is current weather that displays:
         * The date
         * An appropriate icon for the weather at the time of the search query
